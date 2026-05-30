@@ -1,0 +1,309 @@
+/* LinkedIn Experience Calculator - Widget Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+#li-exp-calc-widget {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 300px;
+  background: #0a0f1e;
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: 16px;
+  box-shadow:
+    0 0 0 1px rgba(0, 212, 255, 0.08),
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(0, 212, 255, 0.08);
+  z-index: 99999;
+  font-family: 'DM Sans', sans-serif;
+  color: #e8f4ff;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px) scale(0.96);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#li-exp-calc-widget.lec-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Glow bar at top */
+#li-exp-calc-widget::before {
+  content: '';
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00d4ff, #7b61ff, #00d4ff, transparent);
+  background-size: 200% 100%;
+  animation: lec-shimmer 3s linear infinite;
+}
+
+@keyframes lec-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Header */
+.lec-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.lec-icon {
+  font-size: 16px;
+  filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.8));
+}
+
+.lec-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  flex: 1;
+}
+
+.lec-close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: color 0.2s, background 0.2s;
+  line-height: 1;
+}
+
+.lec-close:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Stats body */
+.lec-body {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  gap: 0;
+}
+
+.lec-stat {
+  flex: 1;
+  text-align: center;
+  padding: 0 8px;
+}
+
+.lec-stat.primary .lec-stat-value {
+  font-family: 'Space Mono', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: #00d4ff;
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.lec-stat.secondary .lec-stat-value {
+  font-family: 'Space Mono', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.2;
+}
+
+.lec-stat-label {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 4px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.lec-stat-label small {
+  color: rgba(0, 212, 255, 0.5);
+  font-size: 9px;
+}
+
+.lec-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+/* Timeline */
+.lec-timeline {
+  padding: 0 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 12px;
+}
+
+.lec-job {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lec-job-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7b61ff;
+  box-shadow: 0 0 8px rgba(123, 97, 255, 0.6);
+  flex-shrink: 0;
+}
+
+.lec-job-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.lec-job-title {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.lec-job-duration {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: rgba(0, 212, 255, 0.6);
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+
+.lec-more {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.25);
+  padding-left: 16px;
+  margin-top: 2px;
+}
+
+/* Alert states: dead / dual */
+.lec-alert {
+  padding: 20px 16px 22px;
+  text-align: center;
+}
+
+.lec-alert-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.lec-alert-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+
+.lec-alert-reason {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.lec-alert-exp {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+/* Dead = red glow */
+.lec-alert.dead .lec-alert-label {
+  color: #ff4d4d;
+  text-shadow: 0 0 20px rgba(255, 77, 77, 0.6);
+}
+
+#li-exp-calc-widget[data-status="dead"]::before {
+  background: linear-gradient(90deg, transparent, #ff4d4d, #ff8c00, #ff4d4d, transparent);
+}
+
+/* Dual = amber glow */
+.lec-alert.dual .lec-alert-label {
+  color: #ffb800;
+  text-shadow: 0 0 20px rgba(255, 184, 0, 0.6);
+}
+
+#li-exp-calc-widget[data-status="dual"]::before {
+  background: linear-gradient(90deg, transparent, #ffb800, #ff6b00, #ffb800, transparent);
+}
+
+
+.lec-dual-roles {
+  margin: 8px 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lec-dual-role {
+  font-size: 11px;
+  color: rgba(255, 184, 0, 0.75);
+  background: rgba(255, 184, 0, 0.08);
+  border: 1px solid rgba(255, 184, 0, 0.2);
+  border-radius: 6px;
+  padding: 4px 10px;
+  text-align: left;
+}
+/* Active dot pulse for current job */
+.lec-job-dot.active {
+  background: #00ff88;
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.7);
+  animation: lec-pulse 2s ease-in-out infinite;
+}
+
+@keyframes lec-pulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(0, 255, 136, 0.6); }
+  50% { box-shadow: 0 0 14px rgba(0, 255, 136, 1); }
+}
+
+
+.lec-error {
+  padding: 16px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.lec-error span {
+  font-size: 24px;
+}
+
+.lec-error p {
+  font-size: 12px;
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.lec-retry {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  color: #00d4ff;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: background 0.2s;
+}
+
+.lec-retry:hover {
+  background: rgba(0, 212, 255, 0.2);
+}
